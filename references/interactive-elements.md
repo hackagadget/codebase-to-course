@@ -23,6 +23,9 @@ Implementation patterns for every interactive element type used in courses. Pick
 16. [Icon-Label Rows](#icon-label-rows)
 17. [Numbered Step Cards](#numbered-step-cards)
 
+### Additional Patterns (Separate Documents)
+- [Source Viewer Modal](source-viewer-modal.md) - Inline modal for viewing external source code (OpenGrok, GitHub, etc.)
+
 ---
 
 ## Code ↔ English Translation Blocks
