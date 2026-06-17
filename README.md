@@ -24,16 +24,16 @@ The output is a **single HTML file** — no dependencies, no setup, works offlin
 
 - **Scroll-based modules** with progress tracking and keyboard navigation
 - **Code ↔ Plain English translations** — real code on the left, what it means on the right
-![Code translation block](assets/code-translations.png){width=720}
+![Code translation block](assets/code-translations.png)
 
 - **Animated visualizations** — data flow animations, group chat between components, architecture diagrams
-![Animated data flow](assets/animated-visualizations.gif){width=720}
+![Animated data flow](assets/animated-visualizations.gif)
 
 - **Interactive quizzes** that test *application* not memorization ("You want to add favorites — which files change?")
-![Interactive quiz](assets/interactive-quizzes.png){width=720}
+![Interactive quiz](assets/interactive-quizzes.png)
 
 - **Glossary tooltips** — hover any technical term for a plain-English definition
-![Glossary tooltip](assets/glossary-tooltips.png){width=720}
+![Glossary tooltip](assets/glossary-tooltips.png)
 
   
 - **Warm, distinctive design** — not the typical purple-gradient AI look
@@ -83,10 +83,11 @@ codebase-to-course/
 ├── SKILL.md                          # Main skill instructions
 └── references/
     ├── design-system.md              # CSS tokens, typography, colors, layout
-    └── interactive-elements.md       # Quiz, animation, and visualization patterns
+    ├── interactive-elements.md       # Quiz, animation, and visualization patterns
+    └── source-viewer-modal.md        # Modal for viewing original source files
 ```
 
 
 ---
 
-Forked from [https://github.com/zarazhangrui/codebase-to-course.git].
+Forked from [zarazhangrui/codebase-to-course](https://github.com/zarazhangrui/codebase-to-course).
