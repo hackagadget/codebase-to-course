@@ -24,16 +24,16 @@ The output is a **single HTML file** — no dependencies, no setup, works offlin
 
 - **Scroll-based modules** with progress tracking and keyboard navigation
 - **Code ↔ Plain English translations** — real code on the left, what it means on the right
-<img width="720" alt="Code translation block" src="https://github.com/user-attachments/assets/fb9e7fac-05c1-4f98-b80c-46543ef81afc" />
+![Code translation block](assets/code-translations.png){width=720}
 
 - **Animated visualizations** — data flow animations, group chat between components, architecture diagrams
-<img width="720" alt="Animated data flow" src="https://github.com/user-attachments/assets/20fb403e-7dfd-4a47-989b-bbae86ca8041" />
+![Animated data flow](assets/animated-visualizations.gif){width=720}
 
 - **Interactive quizzes** that test *application* not memorization ("You want to add favorites — which files change?")
-<img width="720" alt="Interactive quiz" src="https://github.com/user-attachments/assets/57706496-9fa8-457a-8450-3da22789951c" />
+![Interactive quiz](assets/interactive-quizzes.png){width=720}
 
 - **Glossary tooltips** — hover any technical term for a plain-English definition
-<img width="720" alt="Glossary tooltip" src="https://github.com/user-attachments/assets/ac2f160a-d73f-4779-97b2-a06fdb5f3227" />
+![Glossary tooltip](assets/glossary-tooltips.png){width=720}
 
   
 - **Warm, distinctive design** — not the typical purple-gradient AI look
