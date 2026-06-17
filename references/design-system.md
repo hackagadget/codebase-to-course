@@ -2,6 +2,16 @@
 
 Complete CSS design tokens for the course. Copy this entire `:root` block into the course HTML and adapt the accent color to suit the project's personality.
 
+## User Preferences to Ask
+
+Before generating the course, ask the user:
+
+**"Should module blocks have a fixed width or stretch to fit the browser?"**
+- **Fixed width (default)** - Better for reading-focused content; uses `max-width: 1000px`
+- **Fluid/stretch** - Better for code-heavy content with wide code blocks; uses `max-width: 1400px` with horizontal padding
+
+Apply the appropriate layout tokens based on their answer (see [Spacing & Layout](#spacing--layout)).
+
 ## Table of Contents
 1. [Color Palette](#color-palette)
 2. [Typography](#typography)
@@ -131,8 +141,8 @@ Complete CSS design tokens for the course. Copy this entire `:root` block into t
   --space-20: 5rem;      /* 80px */
   --space-24: 6rem;      /* 96px */
 
-  --content-width:     800px;   /* standard reading width */
-  --content-width-wide: 1000px; /* for side-by-side layouts */
+  --content-width:      1000px;  /* fixed layout default */
+  --content-width-wide: 1400px; /* fluid layout default */
   --nav-height:        50px;
   --radius-sm:  8px;
   --radius-md:  12px;
@@ -141,7 +151,7 @@ Complete CSS design tokens for the course. Copy this entire `:root` block into t
 }
 ```
 
-**Module layout:**
+**Module layout (Fixed width - default):**
 ```css
 .module {
   min-height: 100dvh;       /* fallback: 100vh */
@@ -151,6 +161,20 @@ Complete CSS design tokens for the course. Copy this entire `:root` block into t
 }
 .module-content {
   max-width: var(--content-width);
+  margin: 0 auto;
+}
+```
+
+**Module layout (Fluid/stretch):**
+```css
+.module {
+  min-height: 100dvh;       /* fallback: 100vh */
+  scroll-snap-align: start;
+  padding: var(--space-16) var(--space-8);
+  padding-top: calc(var(--nav-height) + var(--space-12));
+}
+.module-content {
+  max-width: var(--content-width-wide);
   margin: 0 auto;
 }
 ```
