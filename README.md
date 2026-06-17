@@ -89,4 +89,4 @@ codebase-to-course/
 
 ---
 
-Built by [Zara](https://x.com/zarazhangrui) with Claude Code.
+Forked from [https://github.com/zarazhangrui/codebase-to-course.git].
