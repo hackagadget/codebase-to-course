@@ -162,11 +162,13 @@ course-name/
 - `references/_footer.html` → `course-name/_footer.html`
 - `references/build.sh` → `course-name/build.sh`
 
-**Step 2 (both paths): Customize `_base.html`** — Read `references/_base.html`, then write it to `course-name/_base.html` with exactly four substitutions:
+**Step 2 (both paths): Customize `_base.html`** — Read `references/_base.html`, then write it to `course-name/_base.html` with exactly three substitutions:
 - Both instances of `COURSE_TITLE` → the actual course title
-- The four `ACCENT_*` placeholders → the chosen accent color values (pick one palette from the comments in `_base.html`)
+- The four `ACCENT_*` placeholders → chosen accent color values (pick one preset from the comments in `_base.html`)
 - `NAV_DOTS` → one `<button class="nav-dot" ...>` per module
-- Layout width → apply the preference captured in Phase 0: set `--content-width: 1000px` (fixed) or `--content-width: 1400px` with `max-width: var(--content-width-wide)` on `.module-content` (fluid)
+- `--content-width` → `1000px` (fixed) or `1400px` (fluid) per Phase 0
+
+The `<style>` block in `_base.html` is the complete theming surface — it declares every visual variable. Deployers who want to restyle the course edit only that block, never `styles.css`.
 
 **Step 3: Write modules** — This is where the paths diverge.
 

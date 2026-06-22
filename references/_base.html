@@ -13,8 +13,11 @@
   <link rel="stylesheet" href="styles.css">
 
   <!--
-    CUSTOMIZE PER COURSE — change only the three accent variables below.
-    Options:
+    THEME — this block is the single place to customize the course's
+    appearance for deployment. All variables here override the defaults
+    in styles.css. Edit only this block; never edit styles.css directly.
+
+    ACCENT PRESETS — replace the four ACCENT_* placeholders below:
       vermillion  #D94F30 / #C4432A / #FDEEE9 / #E8836C  (default)
       coral       #E06B56 / #C85A47 / #FDECEA / #E89585
       teal        #2A7B9B / #1F6280 / #E4F2F7 / #5A9DB8
@@ -23,10 +26,64 @@
   -->
   <style>
     :root {
+      /* ── BACKGROUNDS & SURFACES ────────────────────────── */
+      --color-bg:           #FAF7F2;
+      --color-bg-warm:      #F5F0E8;
+      --color-bg-code:      #1E1E2E;
+      --color-surface:      #FFFFFF;
+      --color-surface-warm: #FDF9F3;
+      --color-nav-bg:       rgba(250,247,242,0.92);
+
+      /* ── TEXT ──────────────────────────────────────────── */
+      --color-text:           #2C2A28;
+      --color-text-secondary: #6B6560;
+      --color-text-muted:     #9E9790;
+      --color-code-text:      #CDD6F4;
+
+      /* ── BORDERS ───────────────────────────────────────── */
+      --color-border:       #E5DFD6;
+      --color-border-light: #EEEBE5;
+
+      /* ── ACCENT ────────────────────────────────────────── */
       --color-accent:       ACCENT_COLOR;
       --color-accent-hover: ACCENT_HOVER;
       --color-accent-light: ACCENT_LIGHT;
       --color-accent-muted: ACCENT_MUTED;
+
+      /* ── SEMANTIC ──────────────────────────────────────── */
+      --color-success:       #2D8B55;
+      --color-success-light: #E8F5EE;
+      --color-error:         #C93B3B;
+      --color-error-light:   #FDE8E8;
+      --color-info:          #2A7B9B;
+      --color-info-light:    #E4F2F7;
+
+      /* ── ACTOR COLORS ──────────────────────────────────── */
+      --color-actor-1: #D94F30;
+      --color-actor-2: #2A7B9B;
+      --color-actor-3: #7B6DAA;
+      --color-actor-4: #D4A843;
+      --color-actor-5: #2D8B55;
+
+      /* ── FONTS ─────────────────────────────────────────── */
+      --font-display: 'Bricolage Grotesque', Georgia, serif;
+      --font-body:    'DM Sans', -apple-system, sans-serif;
+      --font-mono:    'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+      /* ── SYNTAX HIGHLIGHTING ───────────────────────────── */
+      --code-keyword:  #CBA6F7;
+      --code-string:   #A6E3A1;
+      --code-function: #89B4FA;
+      --code-comment:  #6C7086;
+      --code-number:   #FAB387;
+      --code-property: #F9E2AF;
+      --code-operator: #94E2D5;
+      --code-tag:      #F38BA8;
+      --code-attr:     #F9E2AF;
+      --code-value:    #A6E3A1;
+
+      /* ── LAYOUT ────────────────────────────────────────── */
+      --content-width: 1000px; /* fixed: 1000px  fluid: 1400px */
     }
   </style>
 

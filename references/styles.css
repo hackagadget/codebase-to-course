@@ -1,8 +1,9 @@
 /* =============================================================
    CODEBASE-TO-COURSE — COMPLETE DESIGN SYSTEM
    Copy this file verbatim into the course output directory.
-   Never regenerate it — customize only via :root overrides
-   in _base.html (accent color only).
+   Never regenerate it. All visual variables are declared here
+   as defaults and overridden in _base.html, which is the
+   single theming surface for deployed courses.
    ============================================================= */
 
 /* ── GOOGLE FONTS (loaded via _base.html <head>) ───────────────
@@ -43,6 +44,22 @@
   --color-actor-3:        #7B6DAA;
   --color-actor-4:        #D4A843;
   --color-actor-5:        #2D8B55;
+
+  /* CODE SURFACE */
+  --color-code-text:    #CDD6F4;  /* text on --color-bg-code surfaces */
+  --color-nav-bg:       rgba(250,247,242,0.92); /* nav backdrop */
+
+  /* SYNTAX HIGHLIGHTING (Catppuccin-inspired) */
+  --code-keyword:  #CBA6F7;
+  --code-string:   #A6E3A1;
+  --code-function: #89B4FA;
+  --code-comment:  #6C7086;
+  --code-number:   #FAB387;
+  --code-property: #F9E2AF;
+  --code-operator: #94E2D5;
+  --code-tag:      #F38BA8;
+  --code-attr:     #F9E2AF;
+  --code-value:    #A6E3A1;
 
   /* FONTS */
   --font-display: 'Bricolage Grotesque', Georgia, serif;
@@ -125,7 +142,7 @@ body {
   background: var(--color-bg);
   background-image: radial-gradient(
     ellipse at 20% 50%,
-    rgba(217,79,48,0.03) 0%,
+    color-mix(in srgb, var(--color-accent) 3%, transparent) 0%,
     transparent 50%
   );
 }
@@ -147,17 +164,17 @@ pre, code {
 .translation-code::-webkit-scrollbar,
 pre::-webkit-scrollbar { display: none; }
 
-/* Catppuccin-inspired syntax highlighting */
-.code-keyword  { color: #CBA6F7; }
-.code-string   { color: #A6E3A1; }
-.code-function { color: #89B4FA; }
-.code-comment  { color: #6C7086; }
-.code-number   { color: #FAB387; }
-.code-property { color: #F9E2AF; }
-.code-operator { color: #94E2D5; }
-.code-tag      { color: #F38BA8; }
-.code-attr     { color: #F9E2AF; }
-.code-value    { color: #A6E3A1; }
+/* Syntax highlighting — colors defined as vars in :root */
+.code-keyword  { color: var(--code-keyword); }
+.code-string   { color: var(--code-string); }
+.code-function { color: var(--code-function); }
+.code-comment  { color: var(--code-comment); }
+.code-number   { color: var(--code-number); }
+.code-property { color: var(--code-property); }
+.code-operator { color: var(--code-operator); }
+.code-tag      { color: var(--code-tag); }
+.code-attr     { color: var(--code-attr); }
+.code-value    { color: var(--code-value); }
 .code-line     { display: block; }
 
 /* ── NAV ────────────────────────────────────────────────────── */
@@ -166,7 +183,7 @@ pre::-webkit-scrollbar { display: none; }
   top: 0; left: 0; right: 0;
   height: var(--nav-height);
   z-index: 1000;
-  background: rgba(250,247,242,0.92);
+  background: var(--color-nav-bg);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-border-light);
 }
@@ -224,7 +241,7 @@ pre::-webkit-scrollbar { display: none; }
   left: 50%;
   transform: translateX(-50%);
   background: var(--color-bg-code);
-  color: #CDD6F4;
+  color: var(--color-code-text);
   font-family: var(--font-body);
   font-size: var(--text-xs);
   white-space: nowrap;
@@ -332,7 +349,7 @@ p:last-child { margin-bottom: 0; }
 
 .translation-code {
   background: var(--color-bg-code);
-  color: #CDD6F4;
+  color: var(--color-code-text);
   padding: var(--space-6);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
@@ -702,7 +719,7 @@ p:last-child { margin-bottom: 0; }
 .flow-actor.active .flow-actor-icon {
   border-color: var(--color-accent);
   background: var(--color-accent-light);
-  box-shadow: 0 0 0 3px var(--color-accent-light), 0 0 20px rgba(217,79,48,0.15);
+  box-shadow: 0 0 0 3px var(--color-accent-light), 0 0 20px color-mix(in srgb, var(--color-accent) 15%, transparent);
   transform: scale(1.1);
 }
 
@@ -713,7 +730,7 @@ p:last-child { margin-bottom: 0; }
   position: absolute;
   pointer-events: none;
   display: none;
-  box-shadow: 0 0 8px rgba(217,79,48,0.5);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--color-accent) 50%, transparent);
 }
 
 .flow-step-label {
@@ -855,12 +872,12 @@ p:last-child { margin-bottom: 0; }
   transition: background var(--duration-fast);
 }
 .bug-line:hover { background: rgba(255,255,255,0.05); }
-.bug-line.correct  { background: rgba(45,139,85,0.2); }
-.bug-line.incorrect{ background: rgba(201,59,59,0.2); }
+.bug-line.correct  { background: color-mix(in srgb, var(--color-success) 20%, transparent); }
+.bug-line.incorrect{ background: color-mix(in srgb, var(--color-error)   20%, transparent); }
 .line-num {
   font-family: var(--font-mono);
   font-size: var(--text-sm);
-  color: #6C7086;
+  color: var(--code-comment);
   min-width: 1.5em;
   text-align: right;
   user-select: none;
@@ -868,7 +885,7 @@ p:last-child { margin-bottom: 0; }
 .bug-line code {
   font-family: var(--font-mono);
   font-size: var(--text-sm);
-  color: #CDD6F4;
+  color: var(--color-code-text);
 }
 .bug-feedback {
   max-height: 0;
@@ -996,7 +1013,7 @@ p:last-child { margin-bottom: 0; }
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   background: var(--color-bg-code);
-  color: #CBA6F7;
+  color: var(--code-keyword);
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-sm);
   white-space: nowrap;
@@ -1018,7 +1035,7 @@ p:last-child { margin-bottom: 0; }
 .term-tooltip {
   position: fixed;
   background: var(--color-bg-code);
-  color: #CDD6F4;
+  color: var(--color-code-text);
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-sm);
   font-size: var(--text-sm);
