@@ -69,7 +69,7 @@ The most important teaching element. Shows real code from the project on the lef
 }
 .translation-code {
   background: var(--color-bg-code);
-  color: #CDD6F4;
+  color: var(--color-code-text);
   padding: var(--space-6);
   font-family: var(--font-mono);
   font-size: var(--text-sm);
@@ -383,7 +383,7 @@ Step-by-step visualization of data moving between components. User clicks "Next 
 **CSS for active actor glow:**
 ```css
 .flow-actor.active {
-  box-shadow: 0 0 0 3px var(--color-accent), 0 0 20px rgba(217, 79, 48, 0.2);
+  box-shadow: 0 0 0 3px var(--color-accent), 0 0 20px color-mix(in srgb, var(--color-accent) 20%, transparent);
   transform: scale(1.05);
   transition: all var(--duration-normal) var(--ease-out);
 }
@@ -627,7 +627,7 @@ For annotating config files, permissions, or settings:
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   background: var(--color-bg-code);
-  color: #CBA6F7;
+  color: var(--code-keyword);
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-sm);
   white-space: nowrap;
@@ -666,7 +666,7 @@ The most important accessibility feature for non-technical learners. Any technic
 .term-tooltip {
   position: fixed;        /* CRITICAL: fixed, not absolute — prevents clipping */
   background: var(--color-bg-code);
-  color: #CDD6F4;
+  color: var(--color-code-text);
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-sm);
   font-size: var(--text-sm);
