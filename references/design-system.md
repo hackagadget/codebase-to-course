@@ -2,16 +2,6 @@
 
 Complete CSS design tokens for the course. Copy this entire `:root` block into the course HTML and adapt the accent color to suit the project's personality.
 
-## User Preferences to Ask
-
-Before generating the course, ask the user:
-
-**"Should module blocks have a fixed width or stretch to fit the browser?"**
-- **Fixed width (default)** - Better for reading-focused content; uses `max-width: 1000px`
-- **Fluid/stretch** - Better for code-heavy content with wide code blocks; uses `max-width: 1400px` with horizontal padding
-
-Apply the appropriate layout tokens based on their answer (see [Spacing & Layout](#spacing--layout)).
-
 ## Table of Contents
 1. [Color Palette](#color-palette)
 2. [Typography](#typography)

@@ -52,6 +52,18 @@ The directory-based output is intentional: separating CSS/JS from content means 
 
 ## The Process
 
+### Phase 0: Style Preferences
+
+Once the codebase is identified (but before reading any files), ask one quick question:
+
+> **One quick style question before I dive in:**
+>
+> Should module content have a **fixed width** or **stretch to fit the browser**?
+> - **Fixed (default)** — `max-width: 1000px`, better for reading-focused content
+> - **Fluid** — `max-width: 1400px`, better for code-heavy content with wide code blocks
+
+Store the answer and apply it in Phase 3 Step 2 when customizing `_base.html` — use `--content-width: 1000px` for fixed or `--content-width: 1400px` with the fluid `.module-content` layout for fluid. Do not ask again later.
+
 ### Phase 1: Codebase Analysis
 
 Before writing course HTML, deeply understand the codebase. Read all the key files, trace the data flows, identify the "cast of characters" (main components/modules), and map how they communicate. Thoroughness here pays off — the more you understand, the better the course.
@@ -150,10 +162,11 @@ course-name/
 - `references/_footer.html` → `course-name/_footer.html`
 - `references/build.sh` → `course-name/build.sh`
 
-**Step 2 (both paths): Customize `_base.html`** — Read `references/_base.html`, then write it to `course-name/_base.html` with exactly three substitutions:
+**Step 2 (both paths): Customize `_base.html`** — Read `references/_base.html`, then write it to `course-name/_base.html` with exactly four substitutions:
 - Both instances of `COURSE_TITLE` → the actual course title
 - The four `ACCENT_*` placeholders → the chosen accent color values (pick one palette from the comments in `_base.html`)
 - `NAV_DOTS` → one `<button class="nav-dot" ...>` per module
+- Layout width → apply the preference captured in Phase 0: set `--content-width: 1000px` (fixed) or `--content-width: 1400px` with `max-width: var(--content-width-wide)` on `.module-content` (fluid)
 
 **Step 3: Write modules** — This is where the paths diverge.
 
