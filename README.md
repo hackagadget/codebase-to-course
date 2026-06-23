@@ -1,8 +1,8 @@
 # Codebase to Course
 
-A Claude Code skill that turns any codebase into a beautiful, interactive single-page HTML course.
+A Claude Code skill that turns any codebase into a beautiful, interactive HTML course.
 
-Point it at a repo. Get back a stunning, self-contained course that teaches how the code works — with scroll-based navigation, animated visualizations, embedded quizzes, and code-with-plain-English side-by-side translations.
+Point it at a repo. Get back a self-contained course directory that teaches how the code works — with scroll-based navigation, animated visualizations, embedded quizzes, and code-with-plain-English side-by-side translations. Open `index.html` in a browser with no setup required.
 
 ## Who is this for?
 
@@ -20,7 +20,7 @@ You're not trying to become a software engineer. You want coding as a superpower
 
 ## What the course looks like
 
-The output is a **single HTML file** — no dependencies, no setup, works offline. It includes:
+The output is a **directory** — open `index.html` directly in any browser, no server or build tool needed. It includes:
 
 - **Scroll-based modules** with progress tracking and keyboard navigation
 - **Code ↔ Plain English translations** — real code on the left, what it means on the right
@@ -81,10 +81,19 @@ Code snippets are exact copies from the real codebase — never modified or simp
 ```
 codebase-to-course/
 ├── SKILL.md                          # Main skill instructions
-└── references/
-    ├── design-system.md              # CSS tokens, typography, colors, layout
-    ├── interactive-elements.md       # Quiz, animation, and visualization patterns
-    └── source-viewer-modal.md        # Modal for viewing original source files
+├── references/
+│   ├── _base.html                    # Course shell template (title, nav, theme vars)
+│   ├── _footer.html                  # Course closing tags
+│   ├── build.sh                      # Assembles modules into index.html
+│   ├── styles.css                    # Complete design system — copy verbatim, never edit
+│   ├── main.js                       # All interactivity engines — copy verbatim, never edit
+│   ├── content-philosophy.md         # Visual density rules, metaphor and quiz guidelines
+│   ├── design-system.md              # CSS token reference and layout options
+│   ├── gotchas.md                    # Common failure points checklist
+│   ├── interactive-elements.md       # HTML patterns for every interactive element type
+│   ├── module-brief-template.md      # Template for parallel-path module briefs
+│   └── source-viewer-modal.md        # Inline modal for linking to external source files
+└── assets/                           # Screenshots used in this README
 ```
 
 
