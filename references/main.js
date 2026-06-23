@@ -484,6 +484,45 @@
     }
   };
 
+  /* ── COPY TO CLIPBOARD ─────────────────────────────────────── */
+  (function initCopyButtons() {
+    if (!navigator.clipboard) return;
+    if (document.body.dataset.copyButtons === 'false') return;
+
+    function attachCopyBtn(el, getText) {
+      const btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.textContent = 'Copy';
+      btn.setAttribute('aria-label', 'Copy code to clipboard');
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        navigator.clipboard.writeText(getText()).then(() => {
+          btn.textContent = 'Copied!';
+          btn.classList.add('copied');
+          setTimeout(() => {
+            btn.textContent = 'Copy';
+            btn.classList.remove('copied');
+          }, 2000);
+        });
+      });
+      el.appendChild(btn);
+    }
+
+    // Translation code panels
+    $$('.translation-code').forEach(el => {
+      const code = el.querySelector('code') || el;
+      attachCopyBtn(el, () => code.innerText.trim());
+    });
+
+    // Standalone pre blocks (not nested inside .translation-code)
+    $$('pre').forEach(el => {
+      if (el.closest('.translation-code')) return;
+      el.style.position = 'relative';
+      const code = el.querySelector('code') || el;
+      attachCopyBtn(el, () => code.innerText.trim());
+    });
+  }());
+
   /* ── LAYER TOGGLE ──────────────────────────────────────────── */
   window.showLayer = function (layerId, btn) {
     const demo = btn ? btn.closest('.layer-demo') : null;
