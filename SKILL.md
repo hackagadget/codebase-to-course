@@ -54,9 +54,9 @@ The directory-based output is intentional: separating CSS/JS from content means 
 
 ### Phase 0: Style Preferences
 
-Once the codebase is identified (but before reading any files), ask two quick questions:
+Once the codebase is identified (but before reading any files), ask three quick questions:
 
-> **Two quick questions before I dive in:**
+> **Three quick questions before I dive in:**
 >
 > **1. Layout width** — Should module content have a fixed width or stretch to fit the browser?
 > - **Fixed (default)** — `max-width: 1000px`, better for reading-focused content
@@ -65,8 +65,12 @@ Once the codebase is identified (but before reading any files), ask two quick qu
 > **2. Source browser** — Can the source files be browsed online (e.g., via GitHub, OpenGrok, GitLab, or Gitea)?
 > - If yes, provide the base URL and browser type — the final module can include a "Files to Explore" section with links that open in an inline viewer
 > - If no or unsure, skip — file references will be plain text
+>
+> **3. Git history** — If this is a git repository, should I scan the commit history for significant moments to use as teaching content?
+> - **Yes (default)** — I'll scan the history after analysis and show you what I find before using anything; you decide what gets included
+> - **No** — skip git history entirely
 
-Store both answers. Apply the layout preference in Phase 3 Step 2 when customizing `_base.html`. Apply the source browser answer when writing the final module — if a URL was provided, read `references/source-viewer-modal.md` and include a "Files to Explore" section; otherwise omit it. Do not ask again later.
+Store all three answers. Apply the layout preference in Phase 3 Step 2 when customizing `_base.html`. Apply the source browser answer when writing the final module. Apply the git history answer in Phase 1.5. Do not ask again later.
 
 ### Phase 1: Codebase Analysis
 
@@ -77,10 +81,45 @@ Before writing course HTML, deeply understand the codebase. Read all the key fil
 - The primary user journey (what happens when someone uses the app end-to-end)
 - Key APIs, data flows, and communication patterns
 - Clever engineering patterns (caching, lazy loading, error handling, etc.)
-- Real bugs or gotchas (if visible in git history or comments)
+- Real bugs or gotchas (if visible in comments or docs)
 - The tech stack and why each piece was chosen
+- If git history mining is enabled: candidate commits for Phase 1.5 — scan `git log` as part of analysis (see below)
 
 **Figure out what the app does yourself** by reading the README, the main entry points, and the UI code. Don't ask the user to explain the product — they may not be familiar with it either. The course should open by explaining what the app does in plain language (a brief "here's what this thing does and why it's interesting") before diving into how it works. The first module should start with a concrete user action — "imagine you paste a YouTube URL and click Analyze — here's what happens under the hood."
+
+### Phase 1.5: Git History Review (if enabled)
+
+Skip this phase if: git history mining was declined in Phase 0, the directory is not a git repository, or `git log` produces no output.
+
+**Scan the log:**
+```bash
+git log --oneline -100          # overview of recent history
+git log --stat --format="%H|%ad|%s" --date=short -50   # file-change counts per commit
+```
+
+**Identify candidates** — flag a commit if it meets one or more of:
+- Changed 6 or more files (signals an architectural or cross-cutting change)
+- Commit message is longer than 60 characters and contains words like: refactor, migrate, extract, redesign, rewrite, performance, security, architecture, rename, split, merge
+- First commit to introduce a major component or directory that still exists
+- A bug fix with an explanatory message that reveals a non-obvious invariant
+
+Limit candidates to **5 at most**. More than 5 dilutes the value and overwhelms the user. Pick the most structurally significant ones.
+
+**Present candidates to the user** — do not incorporate any commit without confirmation:
+
+> I scanned the git history and found these potentially significant commits:
+>
+> 1. `a1b2c3d` (2024-03) — "Extract auth module — too tangled with route handlers" — changed 14 files
+> 2. `d4e5f6a` (2024-07) — "Migrate from polling to WebSocket for live updates" — changed 8 files
+> 3. `789abcd` (2024-11) — "Fix: prevent XSS in user-supplied markdown rendering" — changed 3 files
+>
+> Which would you like me to use as teaching moments? I can incorporate them as "why things are built this way" context in the relevant modules. Reply with the numbers to include, or "none" to skip.
+
+**After confirmation:** note which commits were approved and carry that list into Phase 2. If the user says none, or doesn't respond with selections, proceed without git content — do not prompt again.
+
+**How approved commits surface in the course:**
+- As a `callout-info` box in the most relevant module: *"In March 2024, the auth logic was extracted into its own module. At the time it had grown too intertwined with the route handlers — making it hard to test independently. That decision shapes what you see today."*
+- If three or more commits are approved and they tell a coherent story of evolution, consider adding a short dedicated "How this codebase evolved" screen to the final module rather than scattering callouts across modules.
 
 ### Phase 2: Curriculum Design
 
@@ -117,6 +156,8 @@ This is a **menu, not a checklist**. Pick the modules that serve the codebase �
 - **Glossary Tooltips** — on every technical term, first use per module.
 
 These five element types are the backbone of every course. Other interactive elements (architecture diagrams, layer toggles, pattern cards, etc.) are optional and should be added when they fit. But the five above must ALWAYS be present — no exceptions.
+
+**If commits were approved in Phase 1.5**, factor them into the curriculum: place each confirmed commit's context in the module most relevant to what it changed. If three or more approved commits form a coherent arc, consider a short evolution screen in the final module instead of scattered callouts.
 
 **Do NOT present the curriculum for approval — just build it.** The user wants a course, not a planning document. Design the curriculum internally, then go straight to building. If they want changes, they'll tell you after seeing the result.
 
