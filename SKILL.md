@@ -54,15 +54,19 @@ The directory-based output is intentional: separating CSS/JS from content means 
 
 ### Phase 0: Style Preferences
 
-Once the codebase is identified (but before reading any files), ask one quick question:
+Once the codebase is identified (but before reading any files), ask two quick questions:
 
-> **One quick style question before I dive in:**
+> **Two quick questions before I dive in:**
 >
-> Should module content have a **fixed width** or **stretch to fit the browser**?
+> **1. Layout width** — Should module content have a fixed width or stretch to fit the browser?
 > - **Fixed (default)** — `max-width: 1000px`, better for reading-focused content
 > - **Fluid** — `max-width: 1400px`, better for code-heavy content with wide code blocks
+>
+> **2. Source browser** — Can the source files be browsed online (e.g., via GitHub, OpenGrok, GitLab, or Gitea)?
+> - If yes, provide the base URL and browser type — the final module can include a "Files to Explore" section with links that open in an inline viewer
+> - If no or unsure, skip — file references will be plain text
 
-Store the answer and apply it in Phase 3 Step 2 when customizing `_base.html` — use `--content-width: 1000px` for fixed or `--content-width: 1400px` with the fluid `.module-content` layout for fluid. Do not ask again later.
+Store both answers. Apply the layout preference in Phase 3 Step 2 when customizing `_base.html`. Apply the source browser answer when writing the final module — if a URL was provided, read `references/source-viewer-modal.md` and include a "Files to Explore" section; otherwise omit it. Do not ask again later.
 
 ### Phase 1: Codebase Analysis
 
