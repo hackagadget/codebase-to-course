@@ -299,6 +299,7 @@ document.addEventListener('keydown', (e) => {
       <span class="module-number">0N</span>
       <h1 class="module-title">Module Title</h1>
       <p class="module-subtitle">One-line description of what this module teaches</p>
+      <span class="module-time">⏱ ~N min</span>
     </header>
 
     <div class="module-body">

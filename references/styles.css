@@ -378,6 +378,17 @@ body[data-theme-toggle="false"] .theme-toggle { display: none; }
   line-height: var(--leading-snug);
 }
 
+.module-time {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin-top: var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+}
+
 .screen {
   margin-bottom: var(--space-16);
 }

@@ -92,6 +92,8 @@ Write exactly two modules. No more, no less.
 
 Same as the standard path: copy reference files, write the two module files to `course-name/modules/`, run `build.sh`, open in browser.
 
+**Time estimates for quick overview:** Apply the standard estimation formula. The two-module format typically lands at 10–15 minutes total. Show per-module estimates in each module header (`<span class="module-time">⏱ ~N min</span>`) and in the nav dot tooltips (`data-tooltip="Module Name · N min"`). Show the combined total in the opening paragraph of Module 1.
+
 ---
 
 ## The Process
@@ -258,6 +260,21 @@ course-name/
 - `--content-width` → `1000px` (fixed) or `1400px` (fluid) per Phase 0
 
 The `<style>` block in `_base.html` is the complete theming surface — it declares every visual variable. Deployers who want to restyle the course edit only that block, never `styles.css`.
+
+**Step 2.5: Time estimates** — After planning each module's screens and interactive elements (but before writing HTML), compute a time estimate for each module:
+
+1. **Prose**: estimate total word count across all screens (a dense screen ≈ 120 words, a light screen ≈ 60 words). Divide by 200 (average adult reading speed for instructional content) to get reading minutes.
+2. **Quizzes**: add 1.5 minutes per quiz question.
+3. **Interactive elements**: add 1 minute per major interactive element (group chat animation, flow animation, architecture diagram, drag-and-drop). Glossary tooltips and callout boxes do not add time.
+4. Round to the nearest whole minute. Minimum 5 minutes per module.
+5. Express as `~N min` (e.g., `~8 min`).
+
+**Where to show estimates:**
+- In each module header: `<span class="module-time">⏱ ~N min</span>` (after `.module-subtitle`)
+- In each nav dot: `data-tooltip="Module Name · N min"` (the `·` separates title from time)
+- In the first module's opening screen: a single metadata line showing total course time — e.g., `<p class="module-time" style="font-size: var(--text-sm);">⏱ Total: ~45 min across 5 modules</p>` — placed immediately under the hero paragraph before the first interactive element
+
+Do not ask the user to supply estimates — derive them from the content you are about to write.
 
 **Step 3: Write modules** — This is where the paths diverge.
 
