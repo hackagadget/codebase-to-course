@@ -19,6 +19,49 @@
 (function () {
   'use strict';
 
+  /* ── COLOUR SCHEME ─────────────────────────────────────────── */
+  (function () {
+    var SCHEMES   = ['warm', 'light', 'dark'];
+    var THEME_KEY = 'course-theme';
+    var ICONS     = { warm: '◐', light: '○', dark: '●' };
+
+    function readScheme() {
+      return document.documentElement.dataset.theme ||
+             (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'warm');
+    }
+
+    function updateBtn(scheme) {
+      var btn = document.querySelector('#theme-toggle');
+      if (!btn) return;
+      btn.textContent = ICONS[scheme] || '◐';
+      btn.setAttribute('aria-label', 'Colour scheme: ' + scheme + ' — click to cycle');
+    }
+
+    // Sync button icon on load (data-theme already set by inline head script)
+    updateBtn(readScheme());
+
+    // Toggle click — cycle and persist
+    var toggleBtn = document.querySelector('#theme-toggle');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function () {
+        var idx  = SCHEMES.indexOf(readScheme());
+        var next = SCHEMES[(idx + 1) % SCHEMES.length];
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem(THEME_KEY, next); } catch (_) {}
+        updateBtn(next);
+      });
+    }
+
+    // Live system preference change — only act when no manual override saved
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+      try {
+        if (localStorage.getItem(THEME_KEY)) return;
+        delete document.documentElement.dataset.theme;
+        updateBtn(e.matches ? 'dark' : 'warm');
+      } catch (_) {}
+    });
+  }());
+
   /* ── HELPERS ──────────────────────────────────────────────── */
   function $(sel, ctx) { return (ctx || document).querySelector(sel); }
   function $$(sel, ctx) { return Array.from((ctx || document).querySelectorAll(sel)); }

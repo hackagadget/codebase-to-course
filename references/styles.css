@@ -126,6 +126,61 @@
   --stagger-delay:   120ms;
 }
 
+/* ── COLOUR SCHEMES ─────────────────────────────────────────── */
+/* Warm is the default — values already in :root above.
+   Explicit [data-theme="warm"] lets the toggle force it even
+   on a dark-preferring system. */
+:root[data-theme="warm"] { color-scheme: light; }
+
+/* Light — clean whites, no warmth */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-bg:             #FFFFFF;
+  --color-bg-warm:        #F5F5F5;
+  --color-surface:        #FFFFFF;
+  --color-surface-warm:   #FAFAFA;
+  --color-nav-bg:         rgba(255,255,255,0.95);
+  --color-text:           #111111;
+  --color-text-secondary: #444444;
+  --color-text-muted:     #888888;
+  --color-border:         #DDDDDD;
+  --color-border-light:   #EEEEEE;
+}
+
+/* Dark — Catppuccin Mocha palette */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg:             #1E1E2E;
+  --color-bg-warm:        #181825;
+  --color-bg-code:        #11111B;
+  --color-surface:        #313244;
+  --color-surface-warm:   #1E1E2E;
+  --color-nav-bg:         rgba(30,30,46,0.95);
+  --color-text:           #CDD6F4;
+  --color-text-secondary: #BAC2DE;
+  --color-text-muted:     #6C7086;
+  --color-border:         #45475A;
+  --color-border-light:   #313244;
+}
+
+/* System dark preference — applies when no explicit theme is set */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --color-bg:             #1E1E2E;
+    --color-bg-warm:        #181825;
+    --color-bg-code:        #11111B;
+    --color-surface:        #313244;
+    --color-surface-warm:   #1E1E2E;
+    --color-nav-bg:         rgba(30,30,46,0.95);
+    --color-text:           #CDD6F4;
+    --color-text-secondary: #BAC2DE;
+    --color-text-muted:     #6C7086;
+    --color-border:         #45475A;
+    --color-border-light:   #313244;
+  }
+}
+
 /* ── RESET & BASE ───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -261,6 +316,25 @@ pre::-webkit-scrollbar { display: none; }
   border-color: var(--color-accent-muted);
   background: var(--color-accent-muted);
 }
+
+/* ── THEME TOGGLE ───────────────────────────────────────────── */
+.theme-toggle {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: var(--text-base);
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: border-color var(--duration-fast), color var(--duration-fast);
+}
+.theme-toggle:hover { border-color: var(--color-accent-muted); color: var(--color-accent); }
+body[data-theme-toggle="false"] .theme-toggle { display: none; }
 
 /* ── MODULE STRUCTURE ───────────────────────────────────────── */
 .module {

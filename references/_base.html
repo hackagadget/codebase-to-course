@@ -88,11 +88,15 @@
   </style>
 
   <script src="main.js" defer></script>
+  <!-- Apply saved colour scheme before first paint to prevent flash -->
+  <script>(function(){var t;try{t=localStorage.getItem('course-theme');}catch(_){}if(t)document.documentElement.dataset.theme=t;}());</script>
 </head>
 <!--
   COURSE BEHAVIOUR FLAGS — add as attributes on <body>:
-    data-copy-buttons="false"   hide copy-to-clipboard buttons on all code blocks
-                                (default: shown; buttons appear on hover)
+    data-copy-buttons="false"    hide copy-to-clipboard buttons on all code blocks
+                                 (default: shown; buttons appear on hover)
+    data-theme-toggle="false"    hide the colour scheme toggle button in the nav
+                                 (default: shown; cycles warm → light → dark)
 -->
 <body>
 
@@ -110,6 +114,7 @@
         -->
         NAV_DOTS
       </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Colour scheme"></button>
     </div>
   </nav>
 
