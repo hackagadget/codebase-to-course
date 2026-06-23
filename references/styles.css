@@ -230,7 +230,10 @@ pre::-webkit-scrollbar { display: none; }
 .code-tag      { color: var(--code-tag); }
 .code-attr     { color: var(--code-attr); }
 .code-value    { color: var(--code-value); }
-.code-line     { display: block; }
+.code-line     { display: inline; }
+/* Collapse leading/trailing whitespace in pre>code while preserving code-line metrics */
+.translation-code pre code { font-size: 0; line-height: 0; }
+.translation-code .code-line { font-size: var(--text-sm); line-height: 1.5; }
 
 /* ── NAV ────────────────────────────────────────────────────── */
 .nav {
