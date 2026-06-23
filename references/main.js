@@ -134,6 +134,36 @@
     }
   });
 
+  /* ── PROGRESS PERSISTENCE ──────────────────────────────────── */
+  (function () {
+    if (document.body.dataset.progressRestore === 'false') return;
+
+    const STORAGE_KEY = 'course-progress:' + location.pathname;
+    let   lastSaved   = -1;
+
+    function save() {
+      const idx = currentModuleIndex();
+      if (idx === lastSaved) return;
+      lastSaved = idx;
+      try { localStorage.setItem(STORAGE_KEY, idx); } catch (_) {}
+    }
+
+    function restore() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw === null) return;
+        const idx = parseInt(raw, 10);
+        if (isNaN(idx) || idx <= 0 || !modules[idx]) return;
+        setTimeout(() => {
+          modules[idx].scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 200);
+      } catch (_) {}
+    }
+
+    window.addEventListener('scroll', save, { passive: true });
+    restore();
+  }());
+
   /* ── SCROLL-TRIGGERED REVEAL ───────────────────────────────── */
   const revealObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
