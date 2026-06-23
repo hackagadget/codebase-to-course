@@ -215,6 +215,17 @@ After running `build.sh`, open `index.html` in the browser. Walk the user throug
 
 ---
 
+## Updating an Existing Course
+
+When the user wants to update an already-built course — add a module, refresh content after the codebase changed, or fix a specific module — follow this flow instead of rebuilding from scratch:
+
+1. **Identify what changed** — Ask the user what changed or what they want to add. Read only the relevant files; do not re-analyse the whole codebase.
+2. **Identify affected modules** — Determine which `modules/` file(s) need to change. For a brand-new module, create `modules/0N-slug.html` with the next available number and add a corresponding nav dot to `_base.html`.
+3. **Rewrite only the affected files** — Edit the relevant module file(s) in place. Leave all other module files, `styles.css`, and `main.js` untouched.
+4. **Re-run `build.sh`** — Reassemble `index.html` from all module files.
+
+---
+
 ## Design Identity
 
 The visual design should feel like a **beautiful developer notebook** — warm, inviting, and distinctive. Read `references/design-system.md` for the full token system, but here are the non-negotiable principles:
