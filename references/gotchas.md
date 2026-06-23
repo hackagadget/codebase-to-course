@@ -28,5 +28,9 @@ Using `scroll-snap-type: y mandatory` traps users inside long modules. Always us
 ### Module Quality Degradation
 Trying to write all modules in one pass causes later modules to be thin and rushed. Build one module at a time and verify each before moving on. For complex codebases, use the parallel path with module briefs.
 
+### Single Quotes in Flow Animation Steps
+
+The `data-steps` attribute is delimited by single quotes (`data-steps='[...]'`), so any apostrophe inside a step label — e.g. `"the user's request"` — will terminate the attribute early and cause `JSON.parse` to fail silently. The entire animation stops working with no console error. **Fix:** avoid apostrophes in step labels, replace with `&apos;`, or rewrite the attribute using double-quote delimiters with escaped inner quotes (`data-steps="[{\"label\":\"...\"}]"`).
+
 ### Missing Interactive Elements
 A module with only text and code blocks, no interactivity. Every module needs at least one of: quiz, data flow animation, group chat, architecture diagram, drag-and-drop. These aren't decorations — they're how non-technical learners actually process information.
