@@ -1,6 +1,6 @@
 ---
 name: codebase-to-course
-description: "Turn any codebase into a beautiful, interactive single-page HTML course that teaches how the code works to non-technical people. Use this skill whenever someone wants to create an interactive course, tutorial, or educational walkthrough from a codebase or project. Also trigger when users mention 'turn this into a course,' 'explain this codebase interactively,' 'teach this code,' 'interactive tutorial from code,' 'codebase walkthrough,' 'learn from this codebase,' or 'make a course from this project.' This skill produces a stunning, self-contained HTML file with scroll-based navigation, animated visualizations, embedded quizzes, and code-with-plain-English side-by-side translations."
+description: "Turn any codebase into a beautiful, interactive HTML course that teaches how the code works. Use this skill whenever someone wants to create an interactive course, tutorial, or educational walkthrough from a codebase or project. Also trigger when users mention 'turn this into a course,' 'explain this codebase interactively,' 'teach this code,' 'interactive tutorial from code,' 'codebase walkthrough,' 'learn from this codebase,' 'make a course from this project,' 'quick overview of this codebase,' 'quick tour,' 'give me the gist,' or 'what is this project.' For quick overview requests, use the Quick Overview Mode section instead of the full process."
 ---
 
 # Codebase-to-Course
@@ -18,7 +18,9 @@ When the skill is first triggered and the user hasn't specified a codebase yet, 
 > - **A GitHub link** — e.g., "make a course from https://github.com/user/repo"
 > - **The current project** — if you're already in a codebase, just say "turn this into a course"
 >
-> I'll read through the code, figure out how everything fits together, and generate a beautiful single-page HTML course with animated diagrams, plain-English code explanations, and interactive quizzes. The whole thing runs in your browser — no setup needed.
+> I'll read through the code, figure out how everything fits together, and generate a beautiful course with animated diagrams, plain-English code explanations, and interactive quizzes. The whole thing runs in your browser — no setup needed.
+>
+> **Need something faster?** Say "quick overview" and I'll produce a 2-module, 10-minute orientation instead of a full course.
 
 If the user provides a GitHub link, clone the repo first (`git clone <url> /tmp/<repo-name>`) before starting the analysis. If they say "this codebase" or similar, use the current working directory.
 
@@ -47,6 +49,48 @@ The learner already has context that traditional students don't — they've *use
 Every module answers **"why should I care?"** before "how does it work?" The answer to "why should I care?" is always practical: *because this knowledge helps you steer AI better, debug faster, or make smarter architectural decisions.*
 
 The directory-based output is intentional: separating CSS/JS from content means AI never regenerates boilerplate, each module is written independently (keeping output size small and quality high), and the assembled `index.html` works offline with zero setup.
+
+---
+
+## Quick Overview Mode
+
+**When to use:** The user's request contains phrases like "quick overview", "quick tour", "brief summary", "what is this project", "give me the gist", or "tl;dr". If detected, skip The Process below and follow this abbreviated path instead. Do not ask Phase 0 questions — use defaults (fixed width, no source browser, no git mining).
+
+**Output:** 2 modules, ~10–15 minutes to complete, emphasis on orientation rather than depth. Same design system and reference files as a full course.
+
+### Quick Phase 1 — Fast Scan
+
+Read only: the README (or top-level docs), the main entry point, the top-level directory structure, and one representative source file per major component. Time-box to what can be read in 5 minutes. Extract:
+
+- What the app does in one sentence
+- 3–5 main components and their roles
+- The primary user action (what happens when someone uses it)
+
+Skip git history, deep file reading, and data flow tracing. The goal is orientation, not mastery.
+
+### Quick Phase 2 — Two-Module Curriculum
+
+Write exactly two modules. No more, no less.
+
+**Module 1 — "What is [App Name]?"**
+- Opening paragraph: what it does, why it exists, who uses it (2–3 sentences max)
+- Cast of characters: icon-label rows showing the 3–5 main components, one line each
+- The core action: one flow animation tracing a single user action end-to-end
+- One callout box with the single most important concept to understand about this codebase
+- Quiz: 2 scenario questions — "given what you just learned, which component would handle X?"
+
+**Module 2 — "How it fits together"**
+- File structure: visual file tree showing top-level layout with one-line annotations
+- One code↔English translation block — the most representative 5–10 lines from the codebase; choose something that shows the "flavour" of how the code is written
+- Group chat animation: two key components "talking" — shows the most common interaction between them
+- Two or three pattern cards capturing the key engineering ideas
+- Quiz: 2 scenario questions testing whether the learner can orient themselves in the codebase
+
+**Mandatory elements still apply** — glossary tooltips on every technical term, quiz in every module, at least one flow animation, at least one group chat. The quick overview is shorter, not lower quality.
+
+### Quick Phase 3 — Build and Assemble
+
+Same as the standard path: copy reference files, write the two module files to `course-name/modules/`, run `build.sh`, open in browser.
 
 ---
 
