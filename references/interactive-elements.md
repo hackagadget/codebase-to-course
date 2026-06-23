@@ -393,7 +393,9 @@ Step-by-step visualization of data moving between components. User clicks "Next 
 
 ## Interactive Architecture Diagram
 
-Full-system diagram where hovering/clicking a component shows a description tooltip.
+Full-system diagram where clicking a component updates a description panel below the diagram.
+
+**Wiring:** `main.js` exposes `window.showArchDesc(el)`. Call it via `onclick` on each `.arch-component`. The description text comes from the element's `data-desc` attribute and is written into the nearest `.arch-description` element inside the same `.arch-diagram`.
 
 **HTML:**
 ```html
@@ -411,7 +413,7 @@ Full-system diagram where hovering/clicking a component shows a description tool
     <h4 class="arch-zone-label">External Services</h4>
     <!-- API cards -->
   </div>
-  <div class="arch-description" id="arch-desc">Click any component to learn what it does</div>
+  <div class="arch-description">Click any component to learn what it does</div>
 </div>
 ```
 

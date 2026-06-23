@@ -527,15 +527,13 @@
   $$('.flow-animation').forEach(el => initFlow(el));
 
   /* ── ARCHITECTURE DIAGRAM ──────────────────────────────────── */
-  $$('.arch-component').forEach(comp => {
-    comp.addEventListener('click', function () {
-      const diagram = this.closest('.arch-diagram');
-      $$('.arch-component', diagram).forEach(c => c.classList.remove('active'));
-      this.classList.add('active');
-      const descEl = $('.arch-description', diagram);
-      if (descEl) descEl.textContent = this.dataset.desc || '';
-    });
-  });
+  window.showArchDesc = function (el) {
+    const diagram = el.closest('.arch-diagram');
+    $$('.arch-component', diagram).forEach(c => c.classList.remove('active'));
+    el.classList.add('active');
+    const descEl = $('.arch-description', diagram);
+    if (descEl) descEl.textContent = el.dataset.desc || '';
+  };
 
   /* ── BUG CHALLENGE ─────────────────────────────────────────── */
   window.checkBugLine = function (el, isCorrect) {
