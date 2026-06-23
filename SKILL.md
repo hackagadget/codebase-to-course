@@ -162,7 +162,7 @@ course-name/
 - `references/_footer.html` → `course-name/_footer.html`
 - `references/build.sh` → `course-name/build.sh`
 
-**Step 2 (both paths): Customize `_base.html`** — Read `references/_base.html`, then write it to `course-name/_base.html` with exactly three substitutions:
+**Step 2 (both paths): Customize `_base.html`** — Read `references/_base.html`, then write it to `course-name/_base.html` with exactly four substitutions:
 - Both instances of `COURSE_TITLE` → the actual course title
 - The four `ACCENT_*` placeholders → chosen accent color values (pick one preset from the comments in `_base.html`)
 - `NAV_DOTS` → one `<button class="nav-dot" ...>` per module
@@ -234,3 +234,4 @@ The `references/` directory contains detailed specs. **Read them only when you r
 - **`references/module-brief-template.md`** — Template for Phase 2.5 module briefs. Read only for complex codebases using the parallel path.
 - **`references/design-system.md`** — Complete CSS custom properties, color palette, typography scale, spacing system, shadows, animations, scrollbar styling. Read during Phase 3 when writing module HTML.
 - **`references/interactive-elements.md`** — Implementation patterns for every interactive element: drag-and-drop quizzes, multiple-choice quizzes, code↔English translations, group chat animations, message flow visualizations, architecture diagrams, pattern cards, callout boxes. Read the relevant sections during Phase 3.
+- **`references/source-viewer-modal.md`** — HTML, CSS, and JS for an inline modal that lets learners view source files without leaving the course. Read during Phase 3 if the course includes a "Files to Explore" section linking to an external source browser (OpenGrok, GitHub, etc.).
