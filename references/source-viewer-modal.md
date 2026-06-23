@@ -67,11 +67,11 @@ If the user doesn't have an online source browser, omit the modal and just list 
 ```css
 /* ====== Source File Links ====== */
 .file-list {
-    background: var(--color-code-bg);
+    background: var(--color-bg-code);
     border: 1px solid var(--color-border);
-    border-radius: 8px;
-    padding: var(--space-lg);
-    margin: var(--space-lg) 0;
+    border-radius: var(--radius-sm);
+    padding: var(--space-6);
+    margin: var(--space-6) 0;
 }
 
 .file-list ul {
@@ -81,13 +81,13 @@ If the user doesn't have an online source browser, omit the modal and just list 
 }
 
 .file-list li {
-    padding: var(--space-sm) 0;
+    padding: var(--space-2) 0;
     border-bottom: 1px solid var(--color-border);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: var(--space-sm);
+    gap: var(--space-2);
 }
 
 .file-list li:last-child {
@@ -96,11 +96,11 @@ If the user doesn't have an online source browser, omit the modal and just list 
 
 .file-link {
     font-family: var(--font-mono);
-    font-size: 0.95rem;
+    font-size: var(--text-sm);
     color: var(--color-info);
     text-decoration: none;
     cursor: pointer;
-    transition: var(--transition-fast);
+    transition: all var(--duration-fast);
 }
 
 .file-link:hover {
@@ -110,7 +110,7 @@ If the user doesn't have an online source browser, omit the modal and just list 
 
 .file-desc {
     color: var(--color-text-muted);
-    font-size: 0.9rem;
+    font-size: var(--text-sm);
 }
 
 /* ====== Source Viewer Modal ====== */
@@ -125,7 +125,7 @@ If the user doesn't have an online source browser, omit the modal and just list 
     z-index: 1000;
     justify-content: center;
     align-items: center;
-    padding: var(--space-lg);
+    padding: var(--space-6);
 }
 
 .modal-overlay.active {
@@ -133,8 +133,8 @@ If the user doesn't have an online source browser, omit the modal and just list 
 }
 
 .modal-content {
-    background: white;
-    border-radius: 12px;
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
     width: 100%;
     max-width: 1200px;
     height: 85vh;
@@ -147,17 +147,17 @@ If the user doesn't have an online source browser, omit the modal and just list 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-md) var(--space-lg);
+    padding: var(--space-4) var(--space-6);
     border-bottom: 1px solid var(--color-border);
-    background: var(--color-code-bg);
-    border-radius: 12px 12px 0 0;
+    background: var(--color-bg-code);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
 }
 
 .modal-title {
     font-family: var(--font-mono);
-    font-size: 0.95rem;
+    font-size: var(--text-sm);
     font-weight: 500;
-    color: var(--color-text);
+    color: var(--color-code-text);
 }
 
 .modal-close {
@@ -166,9 +166,9 @@ If the user doesn't have an online source browser, omit the modal and just list 
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--color-text-muted);
-    padding: var(--space-xs) var(--space-sm);
+    padding: var(--space-1) var(--space-2);
     border-radius: 4px;
-    transition: var(--transition-fast);
+    transition: all var(--duration-fast);
     line-height: 1;
 }
 
@@ -195,14 +195,14 @@ If the user doesn't have an online source browser, omit the modal and just list 
     left: 0;
     width: 100%;
     height: 100%;
-    background: white;
+    background: var(--color-surface);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--space-md);
+    gap: var(--space-4);
     z-index: 10;
-    transition: opacity 0.3s ease;
+    transition: opacity var(--duration-normal) var(--ease-out);
 }
 
 .modal-loader.hidden {
@@ -225,19 +225,19 @@ If the user doesn't have an online source browser, omit the modal and just list 
 
 .modal-loader-text {
     color: var(--color-text-muted);
-    font-size: 0.95rem;
+    font-size: var(--text-sm);
 }
 
 .modal-footer {
-    padding: var(--space-sm) var(--space-lg);
+    padding: var(--space-2) var(--space-6);
     border-top: 1px solid var(--color-border);
-    background: var(--color-code-bg);
-    border-radius: 0 0 12px 12px;
+    background: var(--color-bg-code);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
     text-align: right;
 }
 
 .modal-footer a {
-    font-size: 0.85rem;
+    font-size: var(--text-xs);
     color: var(--color-info);
     text-decoration: none;
 }
